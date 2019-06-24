@@ -68,29 +68,31 @@ def configure(file="./config.json"):
 def thread_main(index, repo_name, sha=None):
     process = os.fork()
     if process == 0:
-        exit(0)
-    new_sha = get_hash(repo_name)
-    pre_build = config['Applications'][index]['Pre_Build']
-    build = config['Applications'][index]['Build']
-    post_build = config['Applications'][index]['Post_Build']
-    clean = config['Applications'][index]['Clean']
-    time_till_check = config['Applications'][index]['Time_Till_check']
-    if new_sha != sha:
-        # New Release 
-        log(index, "New Build Detected - " + repo_name)
-        log(index, "Getting Repo - " + repo_name)
-        get_repo(index)
-        log(index, "Executing Pre Build - " + repo_name)
-        execute(pre_build)
-        log(index, "Executing Build - " + repo_name)
-        execute(build)
-        log(index, "Executing Post Build - " + repo_name)
-        execute(post_build)
-    if clean:
-        log(index, "Performing Folder Wipe")
-        execute("rm -r -f " + repo_name)
-    log(index, "Process for " + repo_name + " is going to sleep.")
-    sleep(time_till_check)
+        return
+    while(True):
+        new_sha = get_hash(repo_name)
+        pre_build = config['Applications'][index]['Pre_Build']
+        build = config['Applications'][index]['Build']
+        post_build = config['Applications'][index]['Post_Build']
+        clean = config['Applications'][index]['Clean']
+        time_till_check = config['Applications'][index]['Time_Till_Check']
+        if new_sha != sha:
+            sha = new_sha
+            # New Release 
+            log(index, "New Build Detected - " + repo_name)
+            log(index, "Getting Repo - " + repo_name)
+            get_repo(index)
+            log(index, "Executing Pre Build - " + repo_name)
+            execute(pre_build)
+            log(index, "Executing Build - " + repo_name)
+            execute(build)
+            log(index, "Executing Post Build - " + repo_name)
+            execute(post_build)
+            if clean:
+                log(index, "Performing Folder Wipe")
+                execute("rm -r -f " + repo_name)
+        log(index, "Process for " + repo_name + " is going to sleep.")
+        sleep(time_till_check)
 
 '''
 Build Handling 
