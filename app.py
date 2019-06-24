@@ -33,7 +33,7 @@ def get_hash(repo_name):
     token = config['Access_Token']
     URL = "https://api.github.com/repos/"+user+'/'+config['Applications'][0]['Repo']+'/branches/'+config['Applications'][0]['Branch']+"?access_token="+token
     r = requests.get(URL)
-    resp = json.loads(r.content)["commit"]["sha"]
+    resp = json.loads(r.content.decode())["commit"]["sha"]
     return resp    
 
 def get_repo(index):
@@ -87,7 +87,7 @@ def thread_main(index, repo_name, sha=None):
         execute(post_build)
     if clean:
         log(index, "Performing Folder Wipe")
-        execute("rmdir /s /q " + repo_name)
+        execute("rm -r -f " + repo_name)
         
 
 '''
