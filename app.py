@@ -74,6 +74,7 @@ def thread_main(index, repo_name, sha=None):
     build = config['Applications'][index]['Build']
     post_build = config['Applications'][index]['Post_Build']
     clean = config['Applications'][index]['Clean']
+    time_till_check = config['Applications'][index]['Time_Till_check']
     if new_sha != sha:
         # New Release 
         log(index, "New Build Detected - " + repo_name)
@@ -88,7 +89,8 @@ def thread_main(index, repo_name, sha=None):
     if clean:
         log(index, "Performing Folder Wipe")
         execute("rm -r -f " + repo_name)
-        
+    log(index, "Process for " + repo_name + " is going to sleep.")
+    sleep(time_till_check)
 
 '''
 Build Handling 

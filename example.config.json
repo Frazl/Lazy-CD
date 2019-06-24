@@ -1,21 +1,26 @@
-
 {
-    "User_Name": "Frazl",
-    "Access_Token": "0000000000000000000000000",
+    "User_Name": "JohnSmith",
+    "Access_Token": "000000000000000000000000000000000000000",
     "Applications": [
         {
             "Name": "Table Tennis Backend",
             "Repo": "tts-flask",
-            "Pre_Build_Command": "",
-            "Build_Command": "",
-            "Post_Build_Command": ""
+            "Branch": "master",
+            "Pre_Build": "",
+            "Build": "",
+            "Post_Build": "",
+            "Time_Till_Check": 30,
+            "Clean": true
         },
         {
             "Name": "Table Tennis Frontend",
             "Repo": "tts-web",
-            "Pre_Build_Command": "",
-            "Build_Command": "",
-            "Post_Build_Command": ""
+            "Branch": "master",
+            "Pre_Build": "test.bat",
+            "Build": "npm run build",
+            "Post_Build": "",
+            "Time_Till_Check": 30,
+            "Clean": true
         }
     ]
 }
