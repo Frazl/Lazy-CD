@@ -60,7 +60,7 @@ def configure(file="./config.json"):
         log("Main", "Loaded Config")
         return config
     except:
-        log("Main", "Main is ending")
+        log("Main", "Main failed to load config")
         exit(0)
 
 
