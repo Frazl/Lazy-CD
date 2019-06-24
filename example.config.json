@@ -1,0 +1,21 @@
+
+{
+    "User_Name": "Frazl",
+    "Access_Token": "0000000000000000000000000",
+    "Applications": [
+        {
+            "Name": "Table Tennis Backend",
+            "Repo": "tts-flask",
+            "Pre_Build_Command": "",
+            "Build_Command": "",
+            "Post_Build_Command": ""
+        },
+        {
+            "Name": "Table Tennis Frontend",
+            "Repo": "tts-web",
+            "Pre_Build_Command": "",
+            "Build_Command": "",
+            "Post_Build_Command": ""
+        }
+    ]
+}
